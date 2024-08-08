@@ -1,7 +1,7 @@
 function Header() {
     return (
         <header>
-            <img src="..\Images\nav-logo.png" alt="Little Lemon Logo"></img>
+            <img src="..\Assets\nav-logo.png" alt="Little Lemon Logo"></img>
         </header>
     );
 }
