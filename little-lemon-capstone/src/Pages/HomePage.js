@@ -1,16 +1,27 @@
-import logo from '../Assets/heroImage.jpeg';
+// src/Pages/HomePage.js
+import Nav from '../Components/Nav';
+import CallToAction from '../Components/CallToAction';
+import Specials from '../Components/Specials';
+import CustomersSay from '../Components/CustomersSay';
+import Chicago from '../Components/Chicago';
 
 function HomePage() {
+    const specials = [
+        // Array of special items
+    ];
+
+    const testimonials = [
+        // Array of customer testimonials
+    ];
+
     return (
-        <header className="main">
-            <div className="text-container">
-                <h1>Welcome to Little Lemon</h1>
-                <a href="#reservations" className="cta-button">Make a Reservation</a>
-            </div>
-            <div className="image-container">
-                <img src={logo} alt="Little Lemon" />
-            </div>
-        </header>
+        <div className="homepage">
+            <Nav />
+            <CallToAction />
+            <Specials specials={specials} />
+            <CustomersSay testimonials={testimonials} />
+            <Chicago />
+        </div>
     );
 }
 

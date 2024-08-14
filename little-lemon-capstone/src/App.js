@@ -6,7 +6,7 @@ import Footer from './Components/Footer';
 import Home from './Pages/HomePage';
 import About from './Pages/AboutPage';
 import Menu from './Pages/MenuPage';
-import Reservations from './Pages/ReservationPage';
+import Reservations from './Pages/BookingPage';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/menu" element={<Menu />} />
-          <Route path="/reservations" element={<Reservations />} />
+          <Route path="/reservations" element={<Main />} />
         </Routes>
         <Footer />
       </div>

@@ -1,16 +1,24 @@
-import logo from '../Assets/heroImage.jpeg';
+import React, { useReducer } from 'react';
+import BookingForm from '../Pages/BookingForm';
+
+function initializeTimes() {
+    // Initial times can be set here or fetched from an API
+    return ['17:00', '18:00', '19:00', '20:00', '21:00'];
+}
+
+function updateTimes(state, action) {
+    // For now, return the same times regardless of the action
+    return initializeTimes();
+}
 
 function Main() {
+    const [availableTimes, dispatch] = useReducer(updateTimes, initializeTimes());
+
     return (
-        <header className="main">
-            <div className="text-container">
-                <h1>Welcome to Little Lemon</h1>
-                <a href="#reservations" className="cta-button">Make a Reservation</a>
-            </div>
-            <div className="image-container">
-                <img src={logo} alt="Little Lemon" />
-            </div>
-        </header>
+        <>
+            <h1>Book Your Table</h1>
+            <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
+        </>
     );
 }
 

@@ -1,24 +1,26 @@
+/* General Body Styles */
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
   color: #333;
 }
 
+/* Navbar Styles */
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Align items vertically in the center */
+  align-items: center;
   padding: 20px 0px;
   background: #FFFFFF;
   z-index: 100;
 }
 
 .logo img {
-  height: 50px; /* Smaller logo size */
-  width: auto;  /* Maintain aspect ratio */
+  height: 50px;
+  width: auto;
 }
 
 .logo {
@@ -31,7 +33,7 @@ body {
   list-style: none;
   display: flex;
   gap: 20px;
-  margin-left: auto; /* Moves the nav-links to the right */
+  margin-left: auto;
 }
 
 .nav-links a {
@@ -39,13 +41,13 @@ body {
   text-decoration: none;
 }
 
-/* Updated styles for the main section with two columns */
-.main {
+/* Call to Action (Hero) Section */
+.call-to-action {
   display: flex;
   height: 100vh;
   background-color: #495E57;
   align-items: center;
-  padding: 0 20px; /* Adjust padding as needed */
+  padding: 0 20px;
 }
 
 .text-container {
@@ -53,10 +55,10 @@ body {
   max-width: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center vertically */
-  align-items: center; /* Center horizontally */
+  justify-content: center;
+  align-items: center;
   color: white;
-  text-align: center; /* Center text horizontally */
+  text-align: center;
 }
 
 .text-container h1 {
@@ -89,6 +91,107 @@ body {
   display: block;
 }
 
+/* Specials Section */
+.specials {
+  background-color: #f4f4f4;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.specials h2 {
+  font-size: 2.5em;
+  margin-bottom: 30px;
+}
+
+.specials-list {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.special-item {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.special-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.special-item h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+/* Customers Say Section (Testimonials) */
+.testimonials {
+  background-color: #ffffff;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.testimonials h2 {
+  font-size: 2.5em;
+  margin-bottom: 30px;
+}
+
+.testimonials-list {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.testimonial-item {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.testimonial-item img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.testimonial-item h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.star-rating {
+  color: #e9c46a;
+}
+
+/* Chicago Section */
+.chicago {
+  background-color: #495E57;
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.chicago h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.chicago p {
+  font-size: 1.2em;
+  line-height: 1.6em;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Footer Styles */
 .footer {
   background-color: #FFFFFF;
   color: black;
@@ -107,4 +210,42 @@ body {
 .social-links a {
   color: black;
   text-decoration: none;
+}
+
+/* Reservation Form */
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+form div {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background-color: #e9c46a;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #f4a261;
 }
