@@ -1,79 +1,104 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
-function BookingForm({ availableTimes, dispatch }) {
-    const [date, setDate] = useState('');
-    const [time, setTime] = useState('');
-    const [guests, setGuests] = useState(1);
-    const [occasion, setOccasion] = useState('Regular');
+const BookingForm = ({ availableTimes, onDateChange, onSubmit }) => {
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+  const [guests, setGuests] = useState(1);
+  const [occasion, setOccasion] = useState('');
+  const [success, setSuccess] = useState(null);
 
-    const handleDateChange = (e) => {
-        const newDate = e.target.value;
-        setDate(newDate);
-        dispatch({ type: 'UPDATE_TIMES', payload: newDate }); // Dispatch the date to update available times
+  const handleDateChange = (event) => {
+    const selectedDate = event.target.value;
+    setDate(selectedDate);
+    onDateChange(selectedDate); // Notify parent component of date change
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const formData = {
+      date,
+      time,
+      guests,
+      occasion,
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Reservation details:', { date, time, guests, occasion });
-        // Additional logic to handle the form submission can be added here
-    };
+    console.log('Submitting form data:', formData);
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="res-date">Choose date</label>
-                <input
-                    type="date"
-                    id="res-date"
-                    value={date}
-                    onChange={handleDateChange}
-                    required
-                />
-            </div>
-            <div>
-                <label htmlFor="res-time">Choose time</label>
-                <select
-                    id="res-time"
-                    value={time}
-                    onChange={(e) => setTime(e.target.value)}
-                    required
-                >
-                    <option value="">Select a time</option>
-                    {availableTimes.map((timeOption) => (
-                        <option key={timeOption} value={timeOption}>{timeOption}</option>
-                    ))}
-                </select>
-            </div>
-            <div>
-                <label htmlFor="guests">Number of guests</label>
-                <input
-                    type="number"
-                    id="guests"
-                    value={guests}
-                    onChange={(e) => setGuests(e.target.value)}
-                    min="1"
-                    max="10"
-                    required
-                />
-            </div>
-            <div>
-                <label htmlFor="occasion">Occasion</label>
-                <select
-                    id="occasion"
-                    value={occasion}
-                    onChange={(e) => setOccasion(e.target.value)}
-                    required
-                >
-                    <option value="Regular">N/A</option>
-                    <option value="Birthday">Birthday</option>
-                    <option value="Anniversary">Anniversary</option>
-                </select>
-            </div>
-            <div>
-                <button type="submit">Submit Reservation</button>
-            </div>
-        </form>
-    );
-}
+    onSubmit(formData)
+      .then((response) => {
+        console.log('Submit API response:', response);
+        if (response) {
+          setSuccess(true);
+        } else {
+          setSuccess(false);
+        }
+      })
+      .catch((error) => {
+        console.error('Submit error:', error);
+        setSuccess(false);
+      });
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        Date:
+        <input
+          type="date"
+          value={date}
+          onChange={handleDateChange}
+          required
+        />
+      </label>
+
+      <label>
+        Time:
+        <select
+          value={time}
+          onChange={(e) => setTime(e.target.value)}
+          required
+        >
+          <option value="">Select time</option>
+          {availableTimes.map((availableTime, index) => (
+            <option key={index} value={availableTime}>{availableTime}</option>
+          ))}
+        </select>
+      </label>
+
+      <label>
+        Number of guests:
+        <input
+          type="number"
+          value={guests}
+          onChange={(e) => setGuests(parseInt(e.target.value, 10))}
+          min="1"
+          required
+        />
+      </label>
+
+      <label>
+        Occasion:
+        <input
+          type="text"
+          value={occasion}
+          onChange={(e) => setOccasion(e.target.value)}
+        />
+      </label>
+
+      <button type="submit">Submit reservation</button>
+
+      {success === true && <p>Reservation successful!</p>}
+      {success === false && <p>Reservation failed. Please try again.</p>}
+    </form>
+  );
+};
+
+BookingForm.propTypes = {
+  availableTimes: PropTypes.array.isRequired,
+  onDateChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default BookingForm;
