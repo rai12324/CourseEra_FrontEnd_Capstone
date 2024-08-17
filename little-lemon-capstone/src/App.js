@@ -19,7 +19,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/reservations" element={<Main />} />
-          <Route path="/confirmed-booking" element={<ConfirmedBooking />} /> {/* Add this route */}
+          <Route path="/confirmed-booking" element={<ConfirmedBooking />} />
         </Routes>
         <Footer />
       </div>
