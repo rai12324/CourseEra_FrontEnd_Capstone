@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Assuming you're using React Router
+import { useNavigate } from 'react-router-dom'; 
 import Nav from '../Components/Nav';
 import CallToAction from '../Components/CallToAction';
 import Specials from '../Components/Specials';
