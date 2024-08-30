@@ -6,8 +6,9 @@ import Footer from './Components/Footer';
 import Home from './Pages/HomePage';
 import About from './Pages/AboutPage';
 import Menu from './Pages/MenuPage';
-import ConfirmedBooking from './Pages/ConfirmedBooking';  // Import the ConfirmedBooking component
-import Reservations from './Pages/BookingPage';  // Ensure this is the correct import for your booking form page
+import ConfirmedBooking from './Pages/ConfirmedBooking';
+import ViewReservation from './Pages/ViewReservations';
+//import ViewReservation from './Pages/ViewReservation';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/reservations" element={<Main />} />
           <Route path="/confirmed-booking" element={<ConfirmedBooking />} />
+          <Route path="/view-reservation" element={<ViewReservation />} />
         </Routes>
         <Footer />
       </div>

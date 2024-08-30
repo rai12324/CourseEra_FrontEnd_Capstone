@@ -1,104 +1,94 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 
-const BookingForm = ({ availableTimes, onDateChange, onSubmit }) => {
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
-  const [guests, setGuests] = useState(1);
-  const [occasion, setOccasion] = useState('');
-  const [success, setSuccess] = useState(null);
+function BookingForm({ availableTimes, onDateChange, onSubmit }) {
+    const [formData, setFormData] = useState({
+        date: '',
+        time: '',
+        guests: 1,
+        occasion: ''
+    });
 
-  const handleDateChange = (event) => {
-    const selectedDate = event.target.value;
-    setDate(selectedDate);
-    onDateChange(selectedDate); // Notify parent component of date change
-  };
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const formData = {
-      date,
-      time,
-      guests,
-      occasion,
+        if (name === 'date') {
+            onDateChange(new Date(value));
+        }
     };
 
-    console.log('Submitting form data:', formData);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        localStorage.setItem('lastReservation', JSON.stringify(formData));
+        onSubmit(formData);
+    };
 
-    onSubmit(formData)
-      .then((response) => {
-        console.log('Submit API response:', response);
-        if (response) {
-          setSuccess(true);
-        } else {
-          setSuccess(false);
-        }
-      })
-      .catch((error) => {
-        console.error('Submit error:', error);
-        setSuccess(false);
-      });
-  };
+    return (
+        <form onSubmit={handleSubmit} aria-label="Booking Form">
+            <div>
+                <label htmlFor="booking-date">Date:</label>
+                <input
+                    type="date"
+                    id="booking-date"
+                    name="date"
+                    value={formData.date}
+                    onChange={handleChange}
+                    required
+                />
+            </div>
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Date:
-        <input
-          type="date"
-          value={date}
-          onChange={handleDateChange}
-          required
-        />
-      </label>
+            <div>
+                <label htmlFor="booking-time">Time:</label>
+                <select
+                    id="booking-time"
+                    name="time"
+                    value={formData.time}
+                    onChange={handleChange}
+                    required
+                >
+                    <option value="">Select a time</option>
+                    {availableTimes.map((time) => (
+                        <option key={time} value={time}>
+                            {time}
+                        </option>
+                    ))}
+                </select>
+            </div>
 
-      <label>
-        Time:
-        <select
-          value={time}
-          onChange={(e) => setTime(e.target.value)}
-          required
-        >
-          <option value="">Select time</option>
-          {availableTimes.map((availableTime, index) => (
-            <option key={index} value={availableTime}>{availableTime}</option>
-          ))}
-        </select>
-      </label>
+            <div>
+                <label htmlFor="number-of-guests">Number of Guests:</label>
+                <input
+                    type="number"
+                    id="number-of-guests"
+                    name="guests"
+                    value={formData.guests}
+                    onChange={handleChange}
+                    min="1"
+                    required
+                />
+            </div>
 
-      <label>
-        Number of guests:
-        <input
-          type="number"
-          value={guests}
-          onChange={(e) => setGuests(parseInt(e.target.value, 10))}
-          min="1"
-          required
-        />
-      </label>
+            <div>
+                <label htmlFor="occasion">Occasion:</label>
+                <select
+                    id="occasion"
+                    name="occasion"
+                    value={formData.occasion}
+                    onChange={handleChange}
+                    required
+                >
+                    <option value="">Select an occasion</option>
+                    <option value="Birthday">Birthday</option>
+                    <option value="Anniversary">Anniversary</option>
+                </select>
+            </div>
 
-      <label>
-        Occasion:
-        <input
-          type="text"
-          value={occasion}
-          onChange={(e) => setOccasion(e.target.value)}
-        />
-      </label>
-
-      <button type="submit">Submit reservation</button>
-
-      {success === true && <p>Reservation successful!</p>}
-      {success === false && <p>Reservation failed. Please try again.</p>}
-    </form>
-  );
-};
-
-BookingForm.propTypes = {
-  availableTimes: PropTypes.array.isRequired,
-  onDateChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-};
+            <button type="submit" aria-label="Submit reservation form">Submit Reservation</button>
+        </form>
+    );
+}
 
 export default BookingForm;
