@@ -8,7 +8,6 @@ import About from './Pages/AboutPage';
 import Menu from './Pages/MenuPage';
 import ConfirmedBooking from './Pages/ConfirmedBooking';
 import ViewReservation from './Pages/ViewReservations';
-//import ViewReservation from './Pages/ViewReservation';
 
 function App() {
   return (

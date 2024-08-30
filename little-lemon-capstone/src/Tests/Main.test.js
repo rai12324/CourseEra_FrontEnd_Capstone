@@ -11,7 +11,7 @@ test('initializeTimes returns the correct initial times', () => {
 
 test('updateTimes returns the same times as provided by initializeTimes', () => {
     const initialState = initializeTimes();
-    const action = { type: 'UPDATE_TIMES', payload: '2024-08-14' }; // Example action, can be anything
+    const action = { type: 'UPDATE_TIMES', payload: '2024-08-14' };
     const newState = updateTimes(initialState, action);
     expect(newState).toEqual(initialState);
 });

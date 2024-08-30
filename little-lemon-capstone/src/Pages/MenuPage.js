@@ -1,5 +1,5 @@
 import menuItems from '../Data/Menu';
-import '../App.css'; // Make sure this CSS file is imported if using App.css
+import '../App.css';
 
 function MenuPage() {
     return (

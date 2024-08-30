@@ -58,7 +58,7 @@ function HomePage() {
 
     const viewReservation = () => {
         if (hasReservation) {
-            navigate('/view-reservation'); // Navigate to the reservation viewing page
+            navigate('/view-reservation');
         } else {
             alert('No reservations in place');
         }

@@ -1,4 +1,4 @@
-import { fetchAPI, submitAPI } from './api'; // Adjust the path if necessary
+import { fetchAPI, submitAPI } from './api';
 
 // Wrapper functions to use the API
 export const fetchAvailableTimes = async (date) => {

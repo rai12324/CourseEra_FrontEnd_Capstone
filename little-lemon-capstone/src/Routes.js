@@ -1,8 +1,8 @@
 import { Route, Switch } from 'react-router-dom';
-import Home from './Pages/HomePage'; // Import your Home component
-import About from './Pages/AboutPage'; // Import your About component
-import Menu from './Pages/MenuPage'; // Import your Menu component
-import Reservations from './Pages/BookingPage'; // Import your Reservations component
+import Home from './Pages/HomePage';
+import About from './Pages/AboutPage';
+import Menu from './Pages/MenuPage';
+import Reservations from './Pages/BookingPage';
 
 function Routes() {
     return (
