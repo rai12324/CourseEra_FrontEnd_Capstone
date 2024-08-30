@@ -1,4 +1,5 @@
 import menuItems from '../Data/Menu';
+import '../App.css'; // Make sure this CSS file is imported if using App.css
 
 function MenuPage() {
     return (
@@ -8,9 +9,11 @@ function MenuPage() {
                 {menuItems.map(item => (
                     <li key={item.id}>
                         <img src={item.image} alt={item.name} />
-                        <h2>{item.name}</h2>
-                        <p>{item.description}</p>
-                        <p>{item.price}</p>
+                        <div>
+                            <h2>{item.name}</h2>
+                            <p>{item.description}</p>
+                            <p>{item.price}</p>
+                        </div>
                     </li>
                 ))}
             </ul>
